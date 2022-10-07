@@ -1,0 +1,50 @@
+name: challenge
+description: Login to see Maps
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core:
+  firebase_auth:
+  flutter_login_facebook:
+  geolocator: ^5.1.5
+  provider: ^3.1.0+1
+
+  cupertino_icons: ^1.0.2
+  google_maps_flutter: ^2.2.1
+  google_maps_flutter_web: ^0.4.0+3
+  http: ^0.13.5
+  json_serializable: ^6.4.1
+  mockito: ^5.3.2
+  rxdart: ^0.27.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+  build_runner: ^2.2.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/facebook.png
+    - assets/locations.json
+  fonts:
+     - family: Kollektif
+       fonts:
+         - asset: fonts/Kollektif.ttf
+           weight: 500
+         - asset: fonts/Kollektif-Bold.ttf
+           weight: 700
+         - asset: fonts/Kollektif-BoldItalic.ttf
+           weight: 700
+         - asset: fonts/Kollektif-Italic.ttf
+           weight: 500
