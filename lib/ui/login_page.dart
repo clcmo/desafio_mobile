@@ -56,27 +56,11 @@ class _LoginPageState extends State<LoginPage> {
               )),
           const SizedBox(height: 45.0),
           TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'E-mail'.toUpperCase(),
-                  labelStyle: TextStyle(
-                      fontFamily: 'Kollektif',
-                      fontSize: 12.0,
-                      color: Colors.grey.withOpacity(0.5)),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Default().color),
-                  )),
+              decoration: Default().callForm('e-mail'),
               onChanged: (value) => email = value,
               validator: (value) => Default().checkEmail(value)),
           TextFormField(
-            decoration: InputDecoration(
-                labelText: 'Senha'.toUpperCase(),
-                labelStyle: TextStyle(
-                    fontFamily: 'Kollektif',
-                    fontSize: 12.0,
-                    color: Colors.grey.withOpacity(0.5)),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Default().color),
-                )),
+            decoration: Default().callForm('senha'),
             obscureText: true,
             onChanged: (value) => password = value,
             validator: (value) => Default().checkPassword(value),
@@ -90,11 +74,11 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(top: 15.0, left: 20.0),
                 child: InkWell(
                     child: Text(
-                  'Esqueceu a Senha',
+                  'Esqueceu a Senha'.toLowerCase(),
                   style: TextStyle(
                       color: Default().color,
                       fontFamily: 'Kollektif',
-                      fontSize: 12.0,
+                      fontSize: 14.0,
                       decoration: TextDecoration.underline),
                 ))),
           ),
@@ -109,12 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                   shadowColor: Default().colorAccent,
                   color: Default().color,
                   elevation: 7.0,
-                  child: const Center(
-                      child: Text(
-                    'LOGIN',
-                    style:
-                        TextStyle(color: Colors.white, fontFamily: 'Kollektif'),
-                  ))),
+                  textStyle: const TextStyle(
+                      color: Colors.white, fontFamily: 'Kollektif'),
+                  child: Center(child: Text('Login'.toUpperCase()))),
             ),
           ),
           const SizedBox(height: 20.0),
@@ -144,12 +125,12 @@ class _LoginPageState extends State<LoginPage> {
               )),
           const SizedBox(height: 65.0),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text('Novo aqui?'),
+            Text('Novo aqui?'.toLowerCase()),
             const SizedBox(width: 5.0),
             InkWell(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const SignUpPage())),
-                child: Text('Registrar',
+                child: Text('Registrar'.toLowerCase(),
                     style: TextStyle(
                         color: Default().color,
                         fontFamily: 'Kollektif',

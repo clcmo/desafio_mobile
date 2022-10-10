@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.keyboard_return),
-          label: const Text('Voltar'),
+          label: Text('Voltar'.toLowerCase()),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
@@ -42,41 +42,26 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   const Text('Cadastrar',
                       style:
-                          TextStyle(fontFamily: 'Kollektiff', fontSize: 60.0)),
+                          TextStyle(fontFamily: 'Kollektiff', fontSize: 40.0)),
                   //Dot placement
                   Positioned(
-                      top: 62.0,
-                      left: 200.0,
+                      top: 97.0,
+                      left: 250.0,
                       child: Container(
-                          height: 10.0,
-                          width: 10.0,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Default().color)))
+                        height: 100.0,
+                        width: 100.0,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Default().color),
+                      ))
                 ],
               )),
           const SizedBox(height: 25.0),
           TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'EMAIL',
-                  labelStyle: TextStyle(
-                      fontFamily: 'Kollektif',
-                      fontSize: 12.0,
-                      color: Colors.blue.withOpacity(0.5)),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Default().color),
-                  )),
+              decoration: Default().callForm('e-mail'),
               onChanged: (value) => email = value,
               validator: (value) => Default().checkEmail(value)),
           TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'SENHA',
-                  labelStyle: TextStyle(
-                      fontFamily: 'Kollektif',
-                      fontSize: 12.0,
-                      color: Colors.blue.withOpacity(0.5)),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Default().color),
-                  )),
+              decoration: Default().callForm('senha'),
               obscureText: true,
               onChanged: (value) => password = value,
               validator: (value) => Default().checkPassword(value)),
@@ -91,11 +76,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     shadowColor: Default().colorAccent,
                     color: Default().color,
                     elevation: 7.0,
-                    child: const Center(
-                        child: Text('CADASTRAR',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Kollektif'))))),
+                    textStyle: const TextStyle(
+                        color: Colors.white, fontFamily: 'Kollektif'),
+                    child: Center(child: Text('Cadastrar'.toUpperCase())))),
           ),
         ]),
       );
