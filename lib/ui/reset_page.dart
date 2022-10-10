@@ -3,42 +3,51 @@ import 'package:challenge/services/auth_services.dart';
 import 'package:challenge/services/validate.dart';
 import 'package:flutter/material.dart';
 
-class ResetPassword extends StatefulWidget {
+class ResetPage extends StatefulWidget {
+  const ResetPage({Key? key}) : super(key: key);
+
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  _ResetPageState createState() => _ResetPageState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ResetPageState extends State<ResetPage> {
   final formKey = GlobalKey<FormState>();
   late String email;
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Form(key: formKey, child: _buildResetForm())));
+        body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Form(key: formKey, child: _buildResetForm())),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.keyboard_return),
+          label: const Text('Voltar'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      );
 
   _buildResetForm() => Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       child: ListView(children: [
         const SizedBox(height: 75.0),
-        Container(
+        SizedBox(
             height: 125.0,
             width: 200.0,
             child: Stack(
               children: [
                 const Text('Esqueci Minha Senha',
-                    style: TextStyle(fontFamily: 'Kollektif', fontSize: 60.0)),
-                //Dot placement
+                    style: TextStyle(fontFamily: 'Kollektif', fontSize: 40.0)),
                 Positioned(
-                    top: 47.0,
-                    left: 160.0,
+                    top: 97.0,
+                    left: 250.0,
                     child: Container(
-                        height: 10.0,
-                        width: 10.0,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: Default().color)))
+                      height: 100.0,
+                      width: 100.0,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: Default().color),
+                    ))
               ],
             )),
         const SizedBox(height: 25.0),
@@ -62,7 +71,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             }
             Navigator.of(context).pop();
           },
-          child: Container(
+          child: SizedBox(
               height: 50.0,
               child: Material(
                   borderRadius: BorderRadius.circular(25.0),
@@ -73,16 +82,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                       child: Text('RECUPERAR SENHA',
                           style: TextStyle(
                               color: Colors.white, fontFamily: 'Kollektif'))))),
-        ),
-        const SizedBox(height: 20.0),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          InkWell(
-              onTap: () => Navigator.of(context).pop(),
-              child: Text('Voltar',
-                  style: TextStyle(
-                      color: Default().color,
-                      fontFamily: 'Kollektif',
-                      decoration: TextDecoration.underline)))
-        ])
+        )
       ]));
 }

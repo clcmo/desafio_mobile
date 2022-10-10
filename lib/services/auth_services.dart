@@ -14,19 +14,18 @@ class AuthService with ChangeNotifier {
   handleAuth() => StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (BuildContext context, snapshot) =>
-          snapshot.hasData ? HomePage() : LoginPage());
+          snapshot.hasData ? const HomePage() : const LoginPage());
 
   Status get status => _status;
 
-  //Sair
-  Future singOut() async {
+  Future logout() async {
     FirebaseAuth.instance.signOut();
     _status = Status.unauthenticated;
     notifyListeners();
     return Future.delayed(Duration.zero);
   }
 
-  singIn(String email, String password, context) => FirebaseAuth.instance
+  login(String email, String password, context) => FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password)
           .then((val) {
         print('Logado');
@@ -34,7 +33,7 @@ class AuthService with ChangeNotifier {
         ErrorHandler().errorDialog(context, e);
       });
 
-  fbSignIn() async {
+  loginFB() async {
     final fb = FacebookLogin();
 
     final res = await fb.logIn(permissions: [
@@ -73,9 +72,11 @@ class AuthService with ChangeNotifier {
   resetPasswordLink(String email) =>
       FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
-  Future<void> onAuthStateChanged(FirebaseAuth firebaseUser) async {
+  Future<void> onAuthStateChanged(FirebaseAuth? firebaseUser) async {
     _status =
         firebaseUser == null ? Status.unauthenticated : Status.authenticated;
     notifyListeners();
   }
+
+  static AuthService instance({required FirebaseAuth auth}) => AuthService();
 }

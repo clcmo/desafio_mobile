@@ -1,11 +1,13 @@
 import 'package:challenge/assets/default.dart';
-import 'package:challenge/reset.dart';
 import 'package:challenge/services/auth_services.dart';
 import 'package:challenge/services/validate.dart';
-import 'package:challenge/signup.dart';
+import 'package:challenge/ui/reset_page.dart';
+import 'package:challenge/ui/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -16,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: Container(
+      body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Form(
@@ -28,25 +30,25 @@ class _LoginPageState extends State<LoginPage> {
       child: ListView(
         children: [
           const SizedBox(height: 75.0),
-          Container(
+          SizedBox(
               height: 125.0,
               width: 200.0,
               child: Stack(
                 children: [
                   const Text('Oi, faça seu',
                       style:
-                          TextStyle(fontFamily: 'Kollektif', fontSize: 60.0)),
+                          TextStyle(fontFamily: 'Kollektif', fontSize: 40.0)),
                   const Positioned(
                       top: 50.0,
                       child: Text('Login',
                           style: TextStyle(
-                              fontFamily: 'Kollektif', fontSize: 60.0))),
+                              fontFamily: 'Kollektif', fontSize: 40.0))),
                   Positioned(
                       top: 97.0,
-                      left: 173.0,
+                      left: 250.0,
                       child: Container(
-                        height: 10.0,
-                        width: 10.0,
+                        height: 100.0,
+                        width: 100.0,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Default().color),
                       ))
@@ -55,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 45.0),
           TextFormField(
               decoration: InputDecoration(
-                  labelText: 'EMAIL',
+                  labelText: 'E-mail'.toUpperCase(),
                   labelStyle: TextStyle(
                       fontFamily: 'Kollektif',
                       fontSize: 12.0,
@@ -67,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               validator: (value) => Default().checkEmail(value)),
           TextFormField(
             decoration: InputDecoration(
-                labelText: 'SENHA',
+                labelText: 'Senha'.toUpperCase(),
                 labelStyle: TextStyle(
                     fontFamily: 'Kollektif',
                     fontSize: 12.0,
@@ -81,8 +83,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 5.0),
           GestureDetector(
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ResetPassword())),
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const ResetPage())),
             child: Container(
                 alignment: const Alignment(1.0, 0.0),
                 padding: const EdgeInsets.only(top: 15.0, left: 20.0),
@@ -98,10 +100,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 70.0),
           GestureDetector(
-            onTap: () {
-              Validate().verifyFieldsToLogin(context, formKey, email, password);
-            },
-            child: Container(
+            onTap: () => Validate()
+                .verifyFieldsToLogin(context, formKey, email, password),
+            child: SizedBox(
               height: 50.0,
               child: Material(
                   borderRadius: BorderRadius.circular(20.0),
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                   elevation: 7.0,
                   child: const Center(
                       child: Text(
-                    'Login',
+                    'LOGIN',
                     style:
                         TextStyle(color: Colors.white, fontFamily: 'Kollektif'),
                   ))),
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 20.0),
           GestureDetector(
-              onTap: () => AuthService().fbSignIn(),
+              onTap: () => AuthService().loginFB(),
               child: Container(
                 height: 50.0,
                 color: Colors.transparent,
@@ -133,9 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        Center(
-                            child: ImageIcon(AssetImage('assets/facebook.png'),
-                                size: 15.0)),
+                        Center(child: Icon(Icons.facebook, size: 15.0)),
                         SizedBox(width: 10.0),
                         Center(
                             child: Text('Login com facebook',
@@ -145,11 +144,11 @@ class _LoginPageState extends State<LoginPage> {
               )),
           const SizedBox(height: 65.0),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Text('Novo aqui ?'),
+            const Text('Novo aqui?'),
             const SizedBox(width: 5.0),
             InkWell(
-                onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SignUpPage())),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const SignUpPage())),
                 child: Text('Registrar',
                     style: TextStyle(
                         color: Default().color,

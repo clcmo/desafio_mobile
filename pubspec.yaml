@@ -1,7 +1,7 @@
 name: challenge
 description: Login to see Maps
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -24,6 +24,7 @@ dependencies:
   json_serializable: ^6.4.1
   mockito: ^5.3.2
   rxdart: ^0.27.5
+  auth: ^8.1.0
 
 dev_dependencies:
   flutter_test:

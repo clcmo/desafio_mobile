@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -34,15 +36,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text('Minha Localização',
-              style: TextStyle(fontFamily: 'Kollektif', fontSize: 30.0)),
-          backgroundColor: Default().color,
+              style: TextStyle(fontFamily: 'Kollektif')),
+          backgroundColor: Default().white,
+          actions: [
+            IconButton(
+              onPressed: () => AuthService().logout(),
+              icon: const Icon(Icons.logout),
+            )
+          ],
         ),
         body: Column(children: [
           SizedBox(
-              width: MediaQuery.of(context)
-                  .size
-                  .width, // or use fixed size like 200
-              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              height: 600,
               child: GoogleMap(
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: const CameraPosition(
@@ -52,11 +58,5 @@ class _HomePageState extends State<HomePage> {
                 markers: _markers.values.toSet(),
               )),
         ]),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => AuthService().singOut(),
-          icon: const Icon(Icons.logout),
-          label: const Text('Sair'),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
 }

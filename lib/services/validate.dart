@@ -34,7 +34,7 @@ class Validate {
   void verifyFieldsToLogin(context, formKey, email, password) {
     if (Validate().checkFields(formKey)) {
       AuthService()
-          .singIn(email, password, context)
+          .login(email, password, context)
           .then((userCredentials) => Navigator.of(context).pop())
           .catchError((e) => ErrorHandler().errorDialog(context, e));
     }

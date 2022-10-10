@@ -16,7 +16,7 @@ class ErrorHandler {
                   BoxDecoration(borderRadius: BorderRadius.circular(20.0)),
               child: Center(child: Text(e.message.toString())),
             ),
-            Container(
+            SizedBox(
                 height: 50.0,
                 child: Row(children: [
                   TextButton(
