@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text('Minha Localização',
               style: TextStyle(fontFamily: 'Kollektif')),
-          backgroundColor: Default().white,
+          backgroundColor: Default().color,
           actions: [
             IconButton(
               onPressed: () => AuthService().logout(),
