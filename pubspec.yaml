@@ -25,6 +25,7 @@ dependencies:
   mockito: ^5.3.2
   rxdart: ^0.27.5
   auth: ^8.1.0
+  permission: ^0.1.7
 
 dev_dependencies:
   flutter_test:

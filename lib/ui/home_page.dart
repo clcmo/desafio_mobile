@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final Map<String, Marker> _markers = {};
+  final defaults = Default();
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final googleOffices = await locations.getGoogleOffices();
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text('Minha Localização',
               style: TextStyle(fontFamily: 'Kollektif')),
-          backgroundColor: Default().color,
+          backgroundColor: defaults.color,
           actions: [
             IconButton(
               onPressed: () => AuthService().logout(),
